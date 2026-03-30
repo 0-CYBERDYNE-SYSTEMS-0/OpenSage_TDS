@@ -1,0 +1,14 @@
+MAIN_MODEL = "openai/glm-5"
+AGENT_STORAGE_PATH = ""
+
+task_name = "glm5"
+agent_storage_path = "${AGENT_STORAGE_PATH}"
+
+[llm.model_configs.main]
+model_name = "openai/glm-5"
+temperature = 0.7
+rpm = 60
+tpm = 60000
+
+[sandbox]
+backend = "native"

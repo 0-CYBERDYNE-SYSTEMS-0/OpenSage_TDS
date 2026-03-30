@@ -1,0 +1,14 @@
+MAIN_MODEL = "gemini/gemini-2.0-flash"
+AGENT_STORAGE_PATH = ""
+
+task_name = "gemini_assistant_demo"
+agent_storage_path = "${AGENT_STORAGE_PATH}"
+
+[llm.model_configs.main]
+model_name = "${MAIN_MODEL}"
+temperature = 0.7
+rpm = 60
+tpm = 60000
+
+[sandbox]
+backend = "native"
