@@ -1,5 +1,7 @@
 # OpenSage TDS
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 Coding agent configurations for [OpenSage](https://github.com/opensage-agent/OpenSage).
 
 ## Prerequisites
