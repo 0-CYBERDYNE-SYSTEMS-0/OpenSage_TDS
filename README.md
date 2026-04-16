@@ -1,77 +1,49 @@
-# OpenSage TDS
+# open_sage_tds
 
+[![Python](https://img.shields.io/badge/Python-3.12+-3776AB?style=flat&logo=python&logoColor=white)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-Coding agent configurations for [OpenSage](https://github.com/opensage-agent/OpenSage).
+Pre-configured coding agent profiles for multi-model workflows. Drop-in agent configs for MiniMax, ZAI GLM, and Gemini — ready to run with [OpenSage](https://github.com/opensage-agent/OpenSage).
 
-## Prerequisites
+## What's inside
 
-- Python >= 3.12
-- [uv](https://docs.astral.sh/uv/getting-started/installation/)
-- [Docker](https://docs.docker.com/get-docker/)
-- [OpenSage](https://github.com/opensage-agent/OpenSage) cloned and installed
+Six agent configurations, each wired to a different model:
+
+| Agent | Model | Why use it |
+|-------|-------|------------|
+| `minimax_m27` | MiniMax-M2.7 | Strong general-purpose coding |
+| `glm5` | GLM-5 | Z.AI's flagship reasoning model |
+| `glm47` | GLM-4.7 | Fast, capable, cost-effective |
+| `glm51` | GLM-5.1 | Latest Z.AI release |
+| `glm5_turbo` | GLM-5-Turbo | Speed-optimized variant |
+| `gemini_assistant` | Gemini 2.0 Flash | Google's free tier — zero cost |
 
 ## Setup
 
 ```bash
-# 1. Clone this repo
 git clone https://github.com/0-CYBERDYNE-SYSTEMS-0/OpenSage_TDS.git
 cd OpenSage_TDS
-
-# 2. Create your .env file with API keys
 cp .env.example .env
-# Edit .env with your real API keys
-
-# 3. Source env vars (or use direnv / shell profile)
+# Add your API keys to .env
 source .env
 ```
 
-## Available Agents
-
-| Agent | Model | Provider |
-|-------|-------|----------|
-| `minimax_m27` | MiniMax-M2.7 | MiniMax (OpenAI-compatible) |
-| `glm5` | GLM-5 | Z.AI Coding API |
-| `glm47` | GLM-4.7 | Z.AI Coding API |
-| `glm51` | GLM-5.1 | Z.AI Coding API |
-| `glm5_turbo` | GLM-5-Turbo | Z.AI Coding API |
-| `gemini_assistant` | Gemini 2.0 Flash | Google (free tier) |
+Requires Python >= 3.12, [uv](https://docs.astral.sh/uv/), and [OpenSage](https://github.com/opensage-agent/OpenSage).
 
 ## Running
 
 ```bash
-# From the OpenSage repo root:
-cd /path/to/OpenSage
+# From your OpenSage installation:
+opensage --agent minimax_m27
 
-# Default agent (MiniMax-M2.7):
-uv run opensage web --agent /path/to/OpenSage_TDS/agents/minimax_m27 --port 8000
-
-# GLM-5:
-uv run opensage web --agent /path/to/OpenSage_TDS/agents/glm5 --port 8000
-
-# Gemini free tier:
-uv run opensage web --agent /path/to/OpenSage_TDS/agents/gemini_assistant --port 8000
+# Or point OpenSage at this config directory:
+opensage --config /path/to/OpenSage_TDS/agents
 ```
 
-Then open `http://127.0.0.1:8000` in your browser.
+## Adding new agents
 
-## Adding a New Agent
+Copy any existing agent YAML, change the model provider and parameters, and add your API key to `.env`. Each agent is a single config file — no scaffolding required.
 
-Create a new directory under `agents/` with:
+## License
 
-```
-agents/my_agent/
-  __init__.py   # empty
-  agent.py      # defines mk_agent()
-  config.toml   # model and sandbox config
-```
-
-See existing agents for examples. Key rule: always read API keys from environment variables, never hardcode them.
-
-## Environment Variables
-
-| Variable | Used By | Get From |
-|----------|---------|----------|
-| `MINIMAX_API_KEY` | minimax_m27 | [platform.minimax.io](https://platform.minimax.io) |
-| `ZAI_CODING_API_KEY` | glm5, glm47, glm51, glm5_turbo | [z.ai](https://z.ai) |
-| `GEMINI_API_KEY` | gemini_assistant | [aistudio.google.com](https://aistudio.google.com/apikey) |
+MIT
